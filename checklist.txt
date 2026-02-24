@@ -1,0 +1,456 @@
+#Calling
+    #Virtual number 
+        #Prepaid client
+            #billing for virtual number
+                1.VNS (Virtual numbers)  - Kookoo(Billable), Kookoo(Non-Billable), Mcube(Billable), Mcube(International), Mcube(Premium), Generic(international), Generic(Billable), Generic(Premium)
+                2.MBL (Mobile virtual numbers)   - Knowlarity(Billable), Knowlarity(Non-Billable), Knowlarity(International), Knowlarity(CLI)
+                3.INTNL (International virtual numbers) - Twilio
+
+#Reassign Lead -
+    1.Have strategy for project and team wise
+    2.Just like push to sales auto-forwading not possible in Reassign
+    3.Sales can reassign lead to sales and presales
+    3.Presales can reassign lead to presales only if in presales configuration flag enabled for reassignment
+    4.Can bulk reassign if flag enabled in other configuration
+    5.Admin can assign lead to any sales
+    6.Can reassign lead via import also
+    7.Lead gets reassign after lead re-engageent if stickyness is disabled for routing rule
+    8.Can reassign lead via workflow
+    9.User directly reassign lead while manually lead creation
+    10.Support user are able to reassign lead temporary and again pull back when reactivation
+    11.Workflow for round robin only assign lead one by one without considering score
+    12.Workflow for weighted round robin only assign lead one by one with considering score for current day only
+    13.We can reassign lead to previous owner of lead, manager of lead by workflow
+
+
+#Push Lead
+    1.Only presales able to push lead to sales
+    2.User can push lead if stage is not incoming and project added on lead 
+    3.Sales can pull lead if flag for pull lead is enabled in presales configuration 
+    4.Bulk push lead not possible
+    5.User can push lead while manually lead creation
+
+#Note
+    1.If user have access on lead - he will be able to add note on lead
+    2.Last note on lead is recent note added by user manually - accepted call feeback form note also
+
+#Billing
+    #Prepaid ->
+        #Billing info
+            1.Per Unit > Show price for per Unit
+            2.Free Unit > Number of units were per unit price are not applicable
+            3.Base Price > Price were always applicable on sets of unit
+            4.Total Units > Subsribe unit count
+            5.If user consume all Subsribe VN and again user try to add new non-billable VN then free and total unit increases
+        #Billing cycle
+            1.
+    
+    #Postpaid -> 
+            1.Postpaid client only have monthly cycle
+
+#3rd Party Accounts
+    #Google Adverts
+        1.Connect the adverts account and grant required permissions.
+        2.Create a campaign tracking rule using Website as the input channel.
+        3.Select the relevant project, set Source to Google, and define an appropriate Sub-source.
+        4.Verify that leads from connected forms are tagged to the intended campaign and source.
+    #Facebook Adverts
+        1.Connect the Facebook Leadgen account and authorize the pages.
+        2.Create a Website input-channel rule with Source as Facebook.
+        3.Use a Sub-source that includes the form identifier to disambiguate multiple forms.
+        4.Confirm that incoming leads map to the configured campaign and project.
+
+#Bulk Activities
+    #Member Lists
+        1.Create lists from existing lead searches, from lead IDs, or from phone numbers (XLS format only).
+        2.Assign a purpose (Sales, Presales, Export, Marketing) so lists appear in the right modules.
+        3.Avoid duplicates by using one consolidated list for broad blasts.
+    #Email Marketing
+        1.Setup: name, description, from-name/email, select campaign and reply-to, optionally add analytics parameters.
+        2.Select Member List: choose one or more lists; you can save and resume later.
+        3.Design: use an approved template or HTML; include an unsubscribe link.
+        4.Review & Send: test to sample recipients; send now, schedule, or save draft.
+    #SMS Marketing
+        1.Setup: name, description, SMS type (Promotional or Transactional), link to a campaign for reply tracking.
+        2.Select Member List: ensure valid phone coverage; creation of new lists is supported.
+        3.Design: pick an approved SMS template; templates and headers must match DLT approvals.
+        4.Review & Send: test numbers supported; send now, schedule, or save draft.
+    #Bulk Activity FAQs (highlights)
+        1.Promotional SMS to DND numbers will not deliver.
+        2.Ensure DLT registration, header and template approvals, and exact template text/ID.
+        3.For emailers, replies land on the lead activity if reply-to tracking is configured.
+
+#Bulk Import
+    #Common prerequisites
+        1.Use Excel XLS (97-2003) format; include country code for phones.
+        2.Never leave mandatory columns blank; remove unknown columns instead.
+        3.Mandatory attributes: phone or email, campaign, source, sub-source, sales user, stage (as applicable).
+    #Method 1 (single tagging context)
+        1.Use when most rows share campaign/source/sub-source/sales and are assigned evenly.
+        2.Provide tagging via the upload form; the sheet can omit those IDs.
+        3.Resolve parser errors (dates, phone formats) before continuing.
+    #Method 2 (mixed sources/users)
+        1.Use when rows span different campaigns/sources/sales/stages.
+        2.Include exact IDs/names in the sheet; then map headers without reselecting in the form.
+        3.Fetch correct IDs for project, campaign, users before retrying.
+    #Typical errors and fixes
+        1.Date formats: use DD/MM/YYYY; avoid future dates.
+        2.Names/IDs: ensure exact spellings and valid IDs; do not comma-separate multiple values in one cell.
+
+#Campaign Set-Up
+    #Purpose
+        1.Track and attribute leads by campaign (online/offline) and source for accurate reporting.
+    #Tracking Mails
+        1.Configure reply-to tracking inboxes tied to campaign, project, source, sub-source.
+    #Tracking Numbers
+        1.Associate virtual numbers to campaigns so calls attribute correctly; new numbers can be purchased if needed.
+    #Input Channels
+        1.Configure integrations (Website, portals, live chat, etc.) via rules per project/source/sub-source.
+        2.Optionally associate a specific virtual number to each rule for dynamic site insertion.
+    #SMS Shortcodes
+        1.Link keyword/short-code pairs to projects/sources for attribution.
+    #SRD (source tracking)
+        1.Generate source-tracked URLs for landing pages; share with media teams for proper tagging.
+    #FAQs (key points)
+        1.Deactivating a campaign without deleting its rules will not stop lead flow.
+        2.Create rules for every project and channel to prevent mis-tagging or organic defaults.
+
+#Drip Marketing
+    #Concepts
+        1.Events trigger the drip; conditions gate actions; delays schedule checks; actions send comms, add tasks, or update lead fields.
+        2.Use communication actions for preconfigured emails/SMS; task actions for operational follow-ups; lead updates to modify attributes.
+
+#Features
+    #GPS Tracking
+        1.Enable tracking; set frequency; view user locations in tracking reports.
+    #Online Meeting
+        1.Enable feature; link user accounts for Google/Microsoft/Zoom; schedule virtual meetings from CRM.
+    #Calendar Slotting
+        1.Enable calendar slots to book follow-ups and site visits according to configuration.
+    #IP Restriction
+        1.Restrict platform access to approved IP addresses.
+    #Two Factor Authentication
+        1.Require OTP during login for stronger security.
+
+#LinkedIn Integration
+    #Access and data required
+        1.Grant required admin access for page and ads account to the integration operator.
+        2.Provide form ID/name, website API key, and SRD of the relevant campaign rule.
+
+#Configurations
+    #Pre-Sales Configuration
+        1.Enable presales module; allow auto forward (push to sales) or manual selection per policy.
+        2.Enable pull-to-sales (sales can pull) and configure team hierarchy for push/pull.
+        3.Call-center management: working hours, disposition timeout, presence management.
+    #Lead Access Configuration
+        1.Team-based access: grant cross-team search/access without changing ownership.
+        2.Lead search access: control which leads are searchable beyond ownership.
+    #Lead Notifications
+        1.Enable/disable specific templates to notify users/leads on key events.
+    #Sales Notifications
+        1.Configure notifications to sales for new enquiries and other triggers.
+    #Company Details
+        1.Edit and save company profile and telephony/PRI details; updates reflect across modules.
+    #Lead Form Configurations
+        1.Toggle basic/custom/detailed sales UI; mark fields required/optional.
+    #Booking Form Configurations
+        1.Control required fields and additional cost parameters; mandatory fields show as required in the form.
+    #Booking Cancellation Reasons
+        1.Manage reasons (add/edit/enable/disable) used while cancelling bookings.
+    #Manage Pipeline Stage
+        1.Default stages: Incoming → Prospect → Opportunity → Booked; Unqualified/Lost as exits.
+        2.Lock stages, define allowed next stages, and map corresponding inter-role transitions.
+    #Other Configurations
+        1.Enable bulk upload, asset uploads, opt-in/out controls, international calling/SMS, and break types.
+        2.Configure re-engagement attribution window and lead reassignment strategy (project or team based).
+        3.Communication toggles: enable/disable channels and web WhatsApp (with number masking off).
+        4.Export fields: include/exclude columns to speed large exports.
+        5.Offline calls: align behavior of manual/offline logs with virtual calling for dashboards.
+    #Site Visit OTP
+        1.Enable OTP verification to validate site visit execution.
+
+#Custom Fields
+    #Lead Related Field
+        1.Admin-only creation; configure field properties and options; control enable/disable state.
+        2.New fields appear in lead edit forms; custom fields can be exposed in lead capture forms when needed.
+
+#Export
+    #Leads
+        1.Export comprehensive lead attributes including projects, campaigns, sources, activity dates, and performance metrics.
+    #Call Activities
+        1.Export call logs with caller/callee, directions, durations, outcomes, recordings, and routing context.
+    #Users
+        1.Export user roster with contact, role, team, status, and timestamps.
+    #Virtual Numbers
+        1.Export inventory with lifecycle, assignment, and IVR information.
+
+#Partners (Channel Partners)
+    #Configuration
+        1.Enable on lead form to allow adding channel partners during lead creation.
+    #Manage Partners
+        1.Create and maintain partner records with basics and contact details.
+
+#Payment Link
+    #Generating links from invoices
+        1.Filter invoices, open actions, generate link, and fill any pending required fields before issuance.
+
+#Post Sales
+    #Key capabilities
+        1.Demand letters auto-generated from payment schedules; receipts on payment updates.
+        2.Payment tracking, reminders, cancellation/refunds, and interest calculations with waivers.
+        3.Documents: agreements, allotments, booking forms, cancellation letters; customizable prints.
+        4.Inventory, dashboards, ledgers, files, and contact directories for stakeholders.
+        5.Imports/APIs for onboarding data and operational flows.
+
+#Property Portal Integrations
+    #PULL Integrations (e.g., Commonfloor, Indiaproperty, Quikr)
+        1.Prerequisites: client admin access, project live on portal, portal keys/credentials.
+        2.Create API client (portal-specific), map project portal codes, and create campaign rule with the portal channel.
+        3.Configure portal integration keys; test with a sample lead; verify reception and tagging.
+        4.Troubleshoot by validating API type, project mapping, availability of leads on pull URL, and duplicate rules.
+    #PUSH Integrations (e.g., Magicbricks)
+        1.Create API client for the portal pusher, share the key, and map project portal codes/IDs.
+        2.Create campaign rule for the portal channel; test push and confirm tagging; resolve incorrect IDs or missing rules.
+
+#Reports
+    #Sales Performance (highlights)
+        1.Lead status vs sales/team; user target analysis; site visits by sales/stages; follow-ups by sales.
+        2.Booking analysis and untouched attempts with multi-dimensional breakdowns.
+        3.Filter by date and attributes; drill down via charts; print/export supported.
+
+#Routing
+    #Core concepts
+        1.Priority defines which entity (campaign/project/source/sub-source/medium) dominates rule selection.
+        2.Rules assign available users; stickiness preserves owner on re-engagement; auxiliary can climb to other rules.
+        3.Call forwarding hops unanswered calls per IVR settings.
+    #Use cases and guardrails
+        1.Keep priorities specialized→generalized; avoid overlapping/misguiding rules; cap number of priorities.
+    #Troubleshooting
+        1.If leads land in default or wrong rule, verify priorities, rules, auxiliary behavior, and user availability.
+
+#Sales & Presales
+    #Operational notes
+        1.Push from presales requires stage not Incoming and at least one project of interest.
+        2.Manual dialing via virtual numbers can bypass DND while whitelisting is pending (where supported).
+        3.Re-engagement via virtual/API updates stage based on channel.
+
+#Search Lists (Smart Lists)
+    #Purpose and types
+        1.System lists (fixed) and user lists (editable) power dashboards, exports, marketing, and reassignment.
+    #Creation
+        1.Define scheduled activity, range, purpose, projects, lead attributes, requirements, and comms criteria; save and reuse.
+    #Notes
+        1.Do not delete lists to preserve references; use descending order; use 0d end-range for lifetime.
+
+#Telephony
+    #Vendors and capabilities
+        1.Providers include landline, mobile, and international options; feature support varies by vendor.
+    #Outbound number criteria
+        1.Default number, team default, first/last campaign, or multiple outbound strategy per vendor capabilities.
+    #Outbound strategy
+        1.Select vendor-specific strategy (landline, mobile, or vendor-based) aligned to purchased services.
+    #Troubleshooting
+        1.Check vendor messages, switch series/city if needed, verify user availability and network, use manual dialing as fallback.
+    #PRI configurations
+        1.Manage Indian/international/mobile outbound numbers and defaults from company settings.
+
+#Unlimited Calling
+    #Provisioning (mobile virtual numbers)
+        1.Select/buy numbers; whitelist user phones for outbound; enable feature with API key; map users and PRI.
+    #Landline virtual numbers
+        1.Purchase and add numbers; for prepaid, upgrade plan before adding; release numbers after removing dependencies.
+    #Operational notes
+        1.Endpoint URLs are constructed per client and number IDs; costs and recording storage apply as configured.
+        2.Debug by verifying user whitelists, feature toggles, logs, and vendor-side status.
+
+#User Management
+    #Common scenarios
+        1.Resolve duplicate email/phone by revealing inactive users, editing stale records, then recreate.
+        2.Password resets may need mail domain whitelisting.
+        3.Role changes require reassigning leads or export→role-change→bulk reassign back.
+        4.Deactivate only after replacing references in routing/workflows/projects/IVR.
+
+#User Target
+    #Targets
+        1.Create targets with name, metric, frequency, and value to track performance.
+
+#Website Integration
+    #Lead capture forms
+        1.Build forms with fields, greetings, and phone verification as needed; embed scripts; preview before publish.
+    #API-based capture
+        1.Use website API key to post leads; append SRD for accurate attribution.
+    #Dynamic site widgets
+        1.Insert dynamic tracking numbers and click-to-call widgets via provided selectors.
+    #FAQs (key points)
+        1.Layout of embedded forms is controlled by the site; ensure unique scripts and correct client/form IDs.
+        2.Associate numbers in rules to reflect correct tracking numbers on site; add blank rules to avoid random tagging.
+
+#Workflow
+    #Concepts and steps
+        1.Create a workflow, select events, add conditions (match-all/any), optional delays, and actions (comms, updates, tasks, webhooks).
+    #FAQs (key points)
+        1.Stage changes succeed only if allowed transitions and required statuses/reasons are provided.
+        2Avoid duplicate triggers by checking multiple actions/flows and template activation state.
+
+#DealManagement
+    #Disabled 
+        1.Allow team based access to leads. >> Enable >> this flag only work for allied access
+        2.Lead Search shows leads from the entire account >> Enabled >> This flag will allow any user within team from any department to search lead within team
+
+#Message Variable
+    1) project_name: $project_name
+    2) rera_id: $rera_id
+    3) project_address: $project_address
+    4) last_lead_project_name: $last_lead_project_name
+    5) first_lead_project_name: $first_lead_project_name
+    6) name: $lead_name
+    7) lead_first_name: $lead_first_name
+    8) lead_last_name: $lead_last_name
+    9) lead_id: $lead_id                   >> Return lead CRM id
+    10) leadid: $leadid                    >> Return lead DB id
+    11) lead_email: $lead_email
+    12) lead_phone_number: $lead_phone_number
+    13) sales_email: $sales_email
+    14) lead_created_at_date_only: $lead_created_at_date_only
+    15) latest_campaign: $latest_campaign
+    16) latest_source: $latest_source
+    17) latest_sub_source: $latest_sub_source
+    18) lead_phone_dialcode: $lead_phone_dialcode
+    19) created_at: $created_at
+    20) client_short_name: $client_short_name
+    21) client_name: $client_name
+    22) last_note: $last_note
+    23) sales_name: $sales_name
+    24) team_name: $team_name
+    25) otp_code: $otp_code
+    26) current_time: $current_time
+    27) lead_created_at: $lead_created_at
+    28) lead_address: $lead_address
+    29) activity_owner: $activity_owner
+    30) agenda: $agenda
+    31) date: $date
+    32) time: $time
+    33) sitevisit_type: $sitevisit_type
+    34) conducted_on: $conducted_on
+    35) acted_on: $acted_on
+    36) lead_otp: $lead_otp
+    37) sales_otp: $sales_otp
+    38) sitevisit_google_calendar_invite: $sitevisit_google_calendar_invite
+    39) sitevisit_ms365_calendar_invite: $sitevisit_ms365_calendar_invite
+    40) sitevisit_zoom_calendar_invite: $sitevisit_zoom_calendar_invite
+    41) sitevisit_google_calendar_url: $sitevisit_google_calendar_url
+    42) sitevisit_ms365_calendar_url: $sitevisit_ms365_calendar_url
+    43) sitevisit_zoom_calendar_url: $sitevisit_zoom_calendar_url
+    44) sitevisit_google_calendar_sms_invite: $sitevisit_google_calendar_sms_invite
+    45) sitevisit_ms365_calendar_sms_invite: $sitevisit_ms365_calendar_sms_invite
+    46) sitevisit_zoom_calendar_sms_invite: sitevisit_zoom_calendar_sms_invite
+    47) task_due_on: $task_due_on
+    48) task_priority: $task_priority
+    49) task_status: $task_status
+    50) task_assignee: $task_assignee
+    51) task_creator: $task_creator
+    52) taskable_type: $taskable_type
+    53) taskable_name: $taskable_name
+    54) lat: $lat
+    55) lng: $lng
+    56) followup_type: $followup_type
+    57) subject: $subject
+    58) vr_link: $vr_link
+    59) task_title: $task_title
+    60) ivr_number: $ivr_number
+    61) sales_manager_name: $sales_manager_name
+    62) by_creator_name: $by_creator_name
+    63) call_time: $call_time
+    64) record_url: $record_url
+    65) lead_profile_url: $lead_profile_url
+    66) call_feedback_url: $call_feedback_url
+    67) call_url: $call_url
+    68) email_url: $email_url
+    69) c_note: $c_note
+    70) booking_detail_id: $booking_detail_id
+    71) booking_amount: $booking_amount
+    72) project_tower_name: $project_tower_name
+    73) project_unit_name: $project_unit_name
+    74) applicant_name: $applicant_name
+    75) ledger_html: $ledger_html
+    76) sales_phone: $sales_phone
+    77) booking_id: $booking_id
+    78) booking_date: $booking_date
+    79) floor_number: $floor_number
+    80) unit_type: $unit_type
+    81) balance: $balance
+    82) plan_short_url: $plan_short_url
+    83) verification_code: $verification_code
+    84) qr_image: $qr_image
+    85) qr_image_sms: $qr_image_sms
+    86) pick_up_location_time: $pick_up_location_time
+    87) sales_pickup_info: $sales_pickup_info
+    88) lead_pickup_info: $lead_pickup_info
+    89) other_invities: $other_invities
+    90) pick_up_location: $pick_up_location
+    91) pick_up_time: $pick_up_time
+    92) requirement: $requirement
+    93) s_note: $s_note
+    94) requirement_min_possession: $requirement_min_possession
+    95) requirement_max_possession: $requirement_max_possession
+    96) confirmation_url: $confirmation_url
+    97) lead_source: $lead_source
+    98) lead_campaign: $lead_campaign
+    99) lead_last_source: $lead_last_source
+    100) lead_last_campaign: $lead_last_campaign
+    101) masked_lead_primary_email: $masked_lead_primary_email
+    102) lead_primary_email: $lead_primary_email
+    103) masked_lead_primary_phone: $masked_lead_primary_phone
+    104) lead_primary_phone: $lead_primary_phone
+    105) phone_number: $phone_number
+    106) post_sales_name: $post_sales_name
+    107) post_sales_email: $post_sales_email
+    108) post_sales_phone: $post_sales_phone
+    109) url_shortener_link: $url_shortener_link
+    110) lead_otp_text: $lead_otp_text
+    111) sales_otp_text: $sales_otp_text
+    112) admin_name: $admin_name
+    113) client_billing_url: $client_billing_url
+    114) support_url: $support_url
+    115) support_phone_number: $support_phone_number
+    116) activity_created_at: $activity_created_at
+    117) work_completed: $work_completed
+    118) total_amount_demanded: $total_amount_demanded
+    119) due_date: $due_date
+    120) current_stage: $current_stage
+    121) receipt_amount: $receipt_amount
+    122) receipt_status: $receipt_status
+    123) receipt_payment_mode: $receipt_payment_mode
+    124) receipt_issuing_bank: $receipt_issuing_bank
+    125) receipt_issuing_bank_branch: $receipt_issuing_bank_branch
+    126) receipt_cheque_no: $receipt_cheque_no
+    127) receipt_accounting_date: $receipt_accounting_date
+    128) receipt_issued_date: $receipt_issued_date
+    129) google_now_tag: $google_now_tag
+    130) task_reminder_subject: $task_reminder_subject
+    131) task_assigned_subject: $task_assigned_subject
+    132) task_completed_subject: $task_completed_subject
+    133) property_types: $property_types
+    134) reassigned_by: $reassigned_by
+    135) lead_update_url: $lead_update_url
+    136) booking_detail_db_id: $booking_detail_db_id
+    137) masked_lead_secondary_emails: $masked_lead_secondary_emails
+    138) lead_secondary_emails: $lead_secondary_emails
+    139) masked_lead_secondary_phones: $masked_lead_secondary_phones
+    140) lead_secondary_phones: $lead_secondary_phones
+    141) gender: $gender
+    142) country: $country
+    143) salutation: $salutation
+    144) birthday: $birthday
+    145) designation: $designation
+    146) lead_db_id: $lead_db_id
+    147) lead_booking_update_url: $lead_booking_update_url
+    148) address1: $address1
+    149) address2: $address2
+    150) city: $city
+    151) state: $state
+    152) zip: $zip_code
+    153) country_code: $country_code
+    154) latest_campaign_id: $latest_campaign_id
+    155) latest_campaign_project_id: $latest_campaign_project_id
+    156) latest_campaign_project_name: $latest_campaign_project_name
